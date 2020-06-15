@@ -1,0 +1,17 @@
+
+.is-active{
+  text-shadow: 0 .25rem .15rem rgba(0, 0, 120, .35)
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .25rem rgba(0, 0, 0, .05);
+}
