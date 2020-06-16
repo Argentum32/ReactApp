@@ -1,8 +1,6 @@
-import React, { useState,  Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link, Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Home from './Home';
 import FetchData from './FetchData';
 import Counter from './Counter';
