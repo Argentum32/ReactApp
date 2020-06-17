@@ -1,28 +1,13 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
+#Your build pipeline references an undefined variable named ‘Parameters.ConnectedServiceName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘Parameters.WebAppKind’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘Parameters.WebAppName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 
 steps:
-
-- task: NodeTool@0
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Deploy Azure App Service'
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
- 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: $(Build.SourcesDirectory)
-    targetFolder: $(Build.ArtifactStagingDirectory)
+    azureSubscription: '$(Parameters.ConnectedServiceName)'
+    appType: '$(Parameters.WebAppKind)'
+    WebAppName: '$(Parameters.WebAppName)'
+    WebConfigParameters: '-Handler iisnode -NodeStartFile server.js -appType node'
+    AppSettings: '-WEBSITE_NODE_DEFAULT_VERSION 6.9.1'
